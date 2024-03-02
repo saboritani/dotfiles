@@ -25,3 +25,31 @@ vim.cmd('autocmd!')
 vim.cmd("autocmd InsertLeave * :call system('zenhan 0')")
 vim.cmd("autocmd CmdlineLeave * :call system('zenhan 0')")
 vim.cmd('augroup END')
+
+--plugin
+--lazy.nvim
+local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
+if not vim.loop.fs_stat(lazypath) then
+  vim.fn.system({
+    "git",
+    "clone",
+    "--filter=blob:none",
+    "https://github.com/folke/lazy.nvim.git",
+    "--branch=stable", --latest stable release
+    lazypath,
+  })
+end
+vim.opt.rtp:prepend(lazypath)
+require("lazy").setup({
+  "mattn/vim-maketable",
+  {
+    "kylechui/nvim-surround",
+    version = "*",
+    event = "VeryLazy",
+    config = function()
+    require("nvim-surround").setup({
+      --Configure here
+    })
+    end
+  }
+})
