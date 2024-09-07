@@ -17,7 +17,9 @@ vim.o.incsearch = true
 vim.o.ignorecase = true
 vim.o.smartcase = true
 vim.o.hlsearch = true
+--keymap
 vim.api.nvim_set_keymap("n", "<Esc><Esc>", ":nohl<CR>", { noremap = true, silent = true})
+vim.api.nvim_set_keymap("i", "jj", "<Esc>", { noremap = true, silent = true})
 --zenhan
 vim.cmd("augroup zenhan")
 vim.cmd("autocmd!")
