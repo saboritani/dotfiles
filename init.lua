@@ -1,4 +1,3 @@
-print('init.lua')
 --move
 vim.o.startofline = true
 --visual
@@ -20,12 +19,7 @@ vim.o.hlsearch = true
 --keymap
 vim.api.nvim_set_keymap("n", "<Esc><Esc>", ":nohl<CR>", { noremap = true, silent = true})
 vim.api.nvim_set_keymap("i", "jj", "<Esc>", { noremap = true, silent = true})
---zenhan
-vim.cmd("augroup zenhan")
-vim.cmd("autocmd!")
-vim.cmd("autocmd InsertLeave * :call system('zenhan 0')")
-vim.cmd("autocmd CmdlineLeave * :call system('zenhan 0')")
-vim.cmd("augroup END")
+vim.api.nvim_set_keymap("i", "jk", "<Esc>:w<CR>", { noremap = true, silent = true})
 
 --plugin
 --lazy.nvim
@@ -41,16 +35,4 @@ if not vim.loop.fs_stat(lazypath) then
   })
 end
 vim.opt.rtp:prepend(lazypath)
-require("lazy").setup({
-  "mattn/vim-maketable",
-  {
-    "kylechui/nvim-surround",
-    version = "*",
-    event = "VeryLazy",
-    config = function()
-    require("nvim-surround").setup({
-      --Configure here
-    })
-    end
-  }
-})
+require("lazy").setup("plugins")
