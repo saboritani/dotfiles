@@ -25,3 +25,4 @@ vim.api.nvim_set_keymap("i", "jk", "<Esc>:w<CR>", { noremap = true, silent = tru
 
 --lazy.nvim
 require("config.lazy")
+
