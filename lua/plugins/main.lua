@@ -31,17 +31,27 @@ else
             })
         end
         },
-        {"nvim-treesitter/nvim-treesitter", build = ":TSUpdate"},
         {
-	        "lukas-reineke/indent-blankline.nvim",
-            main = 'ibl',
-            opts = function(_, opts)
-		    -- Other blankline configuration here
-		    return require("indent-rainbowline").make_opts(opts)
-	        end,
-	        dependencies = {
-		        "TheGLander/indent-rainbowline.nvim",
-	        }
-        }   
+            "nvim-treesitter/nvim-treesitter",
+            build = ":TSUpdate",
+            dependencies = {
+                "nvim-treesitter/nvim-treesitter-textobjects",
+            },
+            main = "nvim-treesitter.configs",
+            opts = {
+                highlight = {enable = true},
+            },
+        },
+        {
+            "nvim-treesitter/nvim-treesitter-textobjects",
+            event = "CursorMoved",
+        },
+        {
+            "lukas-reineke/indent-blankline.nvim",
+            main = "ibl",
+            ---@module "ibl"
+            ---@type ibl.config
+            opts = {},
+        }
     }
 end
