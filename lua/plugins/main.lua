@@ -17,6 +17,14 @@ if vim.g.vscode then
 else
 -- NeoVim
     return {
+        {
+            "devoc09/molokai",
+            lazy = false,
+            priority = 1000,
+            config =function()
+                vim.cmd[[colorscheme molokai]]
+            end,
+        },
         "nvim-tree/nvim-web-devicons",
         "mattn/vim-maketable",
         "monaqa/dial.nvim",
