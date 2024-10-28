@@ -10,7 +10,6 @@ if not vim.g.vscode then
             dependencies = {
                 { "williamboman/mason.nvim" },
                 { "neovim/nvim-lspconfig" },
-                { "echasnovski/mini.completion", version = false },
             },
             config = function()
             local lspconfig = require("lspconfig")
