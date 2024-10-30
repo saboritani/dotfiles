@@ -10,6 +10,7 @@ if not vim.g.vscode then
             dependencies = {
                 { "williamboman/mason.nvim" },
                 { "neovim/nvim-lspconfig" },
+                { "hrsh7th/cmp-nvim-lsp" },
             },
             config = function()
                 local mason = require("mason")
@@ -24,7 +25,10 @@ if not vim.g.vscode then
                     -- and will be called for each installed server that doesn't have
                     -- a dedicated handler.
                     function (server_name) -- default handler (optional)
-                        require("lspconfig")[server_name].setup {}
+                        local capabilities = require("cmp_nvim_lsp").default_capabilities()
+                        require("lspconfig")[server_name].setup {
+                        capabilities = capabilities
+                    }
                     end,
                     -- Next, you can provide a dedicated handler for specific servers.
                     -- For example, a handler override for the `rust_analyzer`:
@@ -54,6 +58,10 @@ if not vim.g.vscode then
         },
         {
             "hrsh7th/nvim-cmp",
+            dependencies = {
+                { "hrsh7th/cmp-emoji" },
+                { "hrsh7th/cmp-nvim-lsp" },
+            },
             ---@param opts cmp.ConfigSchema
             opts = function(_, opts)
                 local has_words_before = function()
@@ -64,6 +72,10 @@ if not vim.g.vscode then
 
                 local cmp = require("cmp")
 
+                cmp.sources = {
+                    {name = "emoji"},
+                    {name = "nvim_lsp"},
+                }
                 opts.mapping = {
                     ["<Tab>"] = cmp.mapping(function(fallback)
                         if cmp.visible() then
