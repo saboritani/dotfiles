@@ -34,10 +34,10 @@ else
             version = "*",
             event = "VeryLazy",
             config = function()
-            require("nvim-surround").setup({
-                --Configure here
-            })
-        end
+                require("nvim-surround").setup({
+                    --Configure here
+                })
+            end
         },
         {
             "nvim-treesitter/nvim-treesitter",
@@ -53,6 +53,13 @@ else
         {
             "nvim-treesitter/nvim-treesitter-textobjects",
             event = "CursorMoved",
+        },
+        {
+            'nvim-lualine/lualine.nvim',
+            dependencies = { 'nvim-tree/nvim-web-devicons' },
+            opts = {
+                theme = "molokai"
+            }
         },
         {
             "HiPhish/rainbow-delimiters.nvim"
